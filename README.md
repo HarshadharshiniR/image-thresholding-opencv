@@ -59,39 +59,94 @@ Compare the results obtained from Global, Adaptive, and Otsu's thresholding meth
 
 ## Developed By
 
-**Name:** ____________________________
+**Name:** Harshadharshini R
 
-**Register No:** ______________________
+**Register No:** 212224230089
 
 ## Output
+### Original
+```
+import cv2
+import matplotlib.pyplot as plt
+
+img = cv2.imread("baseball.jpg")
+
+if img is None:
+    print("Error: Image not found. Check the file path.")
+else:
+    img_rgb = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+    plt.imshow(img_rgb)
+    plt.title("Original Image")
+    plt.axis("off")
+    plt.show()
+```
+<img width="877" height="566" alt="image" src="https://github.com/user-attachments/assets/97b3a0d5-1e29-4cb6-984f-b4133dd22be2" />
+
 
 ### Original Grayscale Image
 
-- The grayscale version of the input image is displayed.
-- Serves as the input for thresholding operations.
+```
+import cv2
+import matplotlib.pyplot as plt
+img = cv2.imread("baseball.jpg", cv2.IMREAD_GRAYSCALE)
+plt.imshow(img, cmap="gray")
+plt.title("Original Grayscale Image")
+plt.axis("off")
+plt.show()
+```
+<img width="872" height="554" alt="image" src="https://github.com/user-attachments/assets/9d36c893-1a27-474a-b7ae-b3947ab27a5f" />
+
 
 ### Global Thresholding
 
-- Original image is displayed.
-- Thresholded image is displayed.
-- A fixed threshold value is used for segmentation.
-- Pixels are classified as foreground or background.
+```
+import cv2
+import matplotlib.pyplot as plt
+img = cv2.imread("baseball.jpg", cv2.IMREAD_GRAYSCALE)
+_, result = cv2.threshold(img, 127, 255, cv2.THRESH_BINARY)
+plt.imshow(result, cmap="gray")
+plt.title("Global Thresholding")
+plt.axis("off")
+plt.show()
+```
+<img width="931" height="591" alt="image" src="https://github.com/user-attachments/assets/1144ad6d-268a-4759-94c2-f9609ee7df1d" />
 
 ### Adaptive Thresholding
 
-- Original image is displayed.
-- Adaptive Mean Thresholded image is displayed.
-- Adaptive Gaussian Thresholded image is displayed.
-- Threshold values vary across different regions of the image.
-- Suitable for images with uneven illumination.
+```
+import cv2
+import matplotlib.pyplot as plt
+img = cv2.imread("baseball.jpg", cv2.IMREAD_GRAYSCALE)
+result = cv2.adaptiveThreshold(
+    img, 255,
+    cv2.ADAPTIVE_THRESH_GAUSSIAN_C,
+    cv2.THRESH_BINARY,
+    11, 2
+)
+plt.imshow(result, cmap="gray")
+plt.title("Adaptive Thresholding")
+plt.axis("off")
+plt.show()
+```
+<img width="837" height="541" alt="image" src="https://github.com/user-attachments/assets/e6f639a9-f781-4caf-82d4-a171a7d02b53" />
+
 
 ### Otsu's Thresholding
 
-- Original image is displayed.
-- Otsu segmented image is displayed.
-- Optimal threshold value is calculated automatically.
-- Produces improved segmentation for bimodal histograms.
-
+```
+import cv2
+import matplotlib.pyplot as plt
+img = cv2.imread("baseball.jpg", cv2.IMREAD_GRAYSCALE)
+_, result = cv2.threshold(
+    img, 0, 255,
+    cv2.THRESH_BINARY + cv2.THRESH_OTSU
+)
+plt.imshow(result, cmap="gray")
+plt.title("Otsu's Thresholding")
+plt.axis("off")
+plt.show()
+```
+<img width="910" height="563" alt="image" src="https://github.com/user-attachments/assets/73eb6338-c0b5-4f5c-8927-5565432a7145" />
 
 ## Result
 
